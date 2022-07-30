@@ -1,0 +1,3 @@
+mining : https://ipfs.moralis.io:2053/ipfs/QmWsGj4wJtPyNXbG34DBdNno2vztcUqseCwAM7r9a2h7oQ
+Ethereum : https://ipfs.moralis.io:2053/ipfs/QmRd7WJdQ7yCnvo6W31ojXPtt3wzkZJivjtPdbicPHdqWb
+HAshing : https://ipfs.moralis.io:2053/ipfs/QmaVuNZaQfCgX7UajC6Yc1Lwhj7WuaEhsx9WhVmzWokimV

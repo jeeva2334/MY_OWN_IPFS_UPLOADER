@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <!-- Moralis SDK code -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  </head>
+  <body>
+    <h1>My own ipfs uploader</h1>
+
+    <input type="file" id="fileInput" name="file"><br><br><br>
+
+    status:<span id="status"></span><br><br>
+    IPFS:<span id="ipfsId"></span><br><br>
+
+    <button id="btn-login" onclick="login()">Moralis Login</button><br>
+    <button onclick="upload()">Upload</button>
+
+    <script>
+      // connect to Moralis server
+
+      const serverUrl = "YOUR_MORALIS_SERVER";
+      const appId = "APP_ID";
+      Moralis.start({ serverUrl, appId });
+
+      //login function
+      login = async ()=>{
+        Moralis.authenticate().then(function (user) {
+            console.log(user.get('ethAddress'))
+            updateStatus('logged in')
+        })
+      }
+
+      //update status
+       const updateStatus = async (status)=>{
+        const statusEl = document.getElementById('status');
+        statusEl.innerHTML = status;
+        console.log(status)
+      }
+
+      const updateIpfs = async (ipfs)=>{
+        const ipfsEl = document.getElementById('ipfsId');
+        ipfsEl.innerHTML = ipfs;
+        console.log(ipfs)
+      }
+      //upload an image
+      upload =async ()=>{
+        updateStatus('Uploading ...')
+        const data = fileInput.files[0];
+        const file = new Moralis.File(data.name, data);
+        await file.saveIPFS();
+        updateStatus('Uploaded Succesfully');
+        updateIpfs(file.ipfs(), file.hash())
+        alert(file.ipfs(), file.hash())
+        console.log(file.ipfs(), file.hash())
+        return file.ipfs()
+      }
+
+    </script>
+  </body>
+</html>
